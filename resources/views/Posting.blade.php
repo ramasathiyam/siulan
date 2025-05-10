@@ -1,7 +1,7 @@
 @extends('layout.main')
 @section('body')
 <!-- Form -->
-<div class="container pt-5 mt-5 mb-5">
+<div class="container  mt-5 mb-5">
   <div class="form-container p-5 shadow">
       <div class="row mb-3">
           <div class="col">

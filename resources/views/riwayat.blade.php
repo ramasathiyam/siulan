@@ -1,4 +1,4 @@
 @extends('layout.main')
 @section('body')
-    <h5 class="text-blue">Urut Berdasarkan :</h5>
+    <h5 class="text-black">Urut Berdasarkan :</h5>
 @endsection
