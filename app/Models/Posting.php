@@ -14,7 +14,7 @@ class Posting extends Model
     public $timestamps = true; // Jika kamu menggunakan created_at dan updated_at
 
     protected $fillable = [
-        'PaketPostingan',
+        'id_paket',
         'JudulKegiatan',
         'Deskripsi',
         'JenisKegiatan',

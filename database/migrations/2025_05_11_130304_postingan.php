@@ -24,8 +24,7 @@ return new class extends Migration
             $table->string('KontakWebsite');
             $table->string('KontakYoutube');
             $table->string('Poster');
-            $table->string('Harga');
-            $table->string('Snap_token');
+            $table->string('Snap_token')->nullable();
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->timestamps();
 

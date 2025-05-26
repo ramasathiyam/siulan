@@ -1,14 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Paket;
 use App\Models\Posting;
+use App\Models\User;
 use Illuminate\Http\Request;
+
 
 class postingController extends Controller
 {
     public function index()
     {
+   
         return view('Posting');
     }
 
@@ -28,6 +31,7 @@ class postingController extends Controller
             'KontakWebsite' => 'nullable|string',
             'KontakYoutube' => 'nullable|string',
             'Poster' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+
         ], [
             'PaketPostingan.in' => 'Pilih Paket Postingan',
             'JudulKegiatan.required' => 'Judul kegiatan wajib diisi',
@@ -49,21 +53,50 @@ class postingController extends Controller
 
         // Posting::create($request->all());
         // Simpan ke database dengan path poster yang benar
-        Posting::create([
-            'PaketPostingan' => $request->PaketPostingan,
-            'JudulKegiatan' => $request->JudulKegiatan,
-            'Deskripsi' => $request->Deskripsi,
-            'JenisKegiatan' => $request->JenisKegiatan,
-            'Kategori' => $request->Kategori,
-            'Lokasi' => $request->Lokasi,
-            'TautanPendaftaran' => $request->TautanPendaftaran,
-            'KontakInstagram' => $request->KontakInstagram,
-            'KontakWebsite' => $request->KontakWebsite,
-            'KontakYoutube' => $request->KontakYoutube,
-            'Poster' => $posterPath
-        ]);
+       
+       
+        $namaPaket = $request->PaketPostingan;
 
-        return redirect()->route('tentangkami')->with('success', 'Postingan berhasil ditambahkan.');
+$idPaket = match ($namaPaket) {
+    'Basic' => 1,
+    'Premium' => 2,
+    'Medium' => 3,
+    default => 1,
+};
+
+// Ambil harga dari tabel paket
+$paket = Paket::find($idPaket);
+
+
+$snapToken = ''; // atau generate dari Midtrans jika sudah terhubung
+
+Posting::create([
+    'id_paket' => $idPaket,
+    'JudulKegiatan' => $request->JudulKegiatan,
+    'Deskripsi' => $request->Deskripsi,
+    'JenisKegiatan' => $request->JenisKegiatan,
+    'Kategori' => $request->Kategori,
+    'Lokasi' => $request->Lokasi,
+    'TautanPendaftaran' => $request->TautanPendaftaran,
+    'KontakInstagram' => $request->KontakInstagram,
+    'KontakWebsite' => $request->KontakWebsite,
+    'KontakYoutube' => $request->KontakYoutube,
+    'Poster' => $posterPath,
+    'Snap_token' => $snapToken,
+
+    ]);
+
+        return redirect()->route('home')->with('success', 'Postingan berhasil ditambahkan.');
+    }
+
+    public function indexdelete(Request $request, $id) {
+        $request = User::find($id);
+        if ($request) { 
+            $request->delete();
+            return redirect()->route('Home')->with('success', 'Pengguna berhasil dihapus.');
+        } else {
+            return redirect()->route('Home')->with('error', 'Pengguna tidak ditemukan.');
+        }
     }
 
 }

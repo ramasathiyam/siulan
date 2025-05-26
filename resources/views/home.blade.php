@@ -9,7 +9,7 @@
                 <h1 class="text-justify text-lg-start color-wht">Satu Tempat, Prestasi Tanpa Batas di Udayana</h1>
                 <p style="text-align:justify;" class="color-wht mt-3">SIULAN (Seputar Informasi Lomba dan Seminar) adalah platform yang memudahkan mahasiswa Universitas Udayana dalam mencari dan membagikan informasi lomba serta seminar, baik akademik maupun non-akademik. </p>
                 <!-- <button class="px-4 py-1 rounded" style="background-color:#E8A652 ; border-color : #E8A652;">Log in</button> -->
-                <a href="login.html">
+                <a href="{{ route('login') }}">
                   <button type="button" class="btn btn-sm border-0 px-5 py-2 mt-3 custom-button">
                     Telusuri
                   </button>
