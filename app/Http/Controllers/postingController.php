@@ -17,21 +17,32 @@ class postingController extends Controller
     public function posting(Request $request)
     {
         $request->validate([
-            'PaketPostingan' => 'required|string',
+            'PaketPostingan' => 'required|string|in:Basic,Medium,Premium',
             'JudulKegiatan' => 'required|string',
             'Deskripsi' => 'required|string',
-            'JenisKegiatan' => 'required|string',
+            'JenisKegiatan' => 'required|string|in:Lomba,Seminar,Webinar',
             'Kategori' => 'required|string|in:Teknologi,Bisnis,Olahraga',
             'Lokasi' => 'required|string',
-            'TautanPendaftaran' => 'required|string',
+            'TautanPendaftaran' => 'required|url',
             'KontakInstagram' => 'required|string',
-            'KontakWebsite' => 'required|string',
-            'KontakYoutube' => 'required|string',
+            'KontakWebsite' => 'nullable|string',
+            'KontakYoutube' => 'nullable|string',
             'Poster' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-        ]);
+        ], [
+            'PaketPostingan.in' => 'Pilih Paket Postingan',
+            'JudulKegiatan.required' => 'Judul kegiatan wajib diisi',
+            'Deskripsi.required' => 'Deskripsi wajib diisi',
+            'JenisKegiatan.required' => 'Jenis Kegiatan wajib dipilih.',
+            'JenisKegiatan.in' => 'Pilih Jenis Kegiatan',
+            'Kategori.in' => 'Kategori yang dipilih tidak valid.',
+            'Lokasi.required' => 'Pilih Lokasi',
+            'TautanPendaftaran.url' => 'Tautan pendaftaran harus berupa URL yang valid.',
+            'TautanPendaftaran.required' => 'Tautan pendaftaran wajib di isi.',
+            'KontakInstagram.required' => 'Masukkan Instagram.',
+            'Poster.required' => 'Poster wajib diunggah.',
+            'Poster.mimes' => 'Poster harus berupa file JPG atau PNG.',
+            ]);
 
-        // Tambahkan ini untuk debug
-        // dd($request->file('Poster'));
 
         // Simpan file poster ke storage/app/public/poster
         $posterPath = $request->file('Poster')->store('poster', 'public');
@@ -53,24 +64,6 @@ class postingController extends Controller
         ]);
 
         return redirect()->route('tentangkami')->with('success', 'Postingan berhasil ditambahkan.');
-    }
-
-    public function approve($id)
-    {
-        $post = Posting::findOrFail($id);
-        $post->status = 'approved';
-        $post->save();
-
-        return back()->with('success', 'Postingan berhasil disetujui.');
-    }
-
-    public function reject($id)
-    {
-        $post = Posting::findOrFail($id);
-        $post->status = 'rejected';
-        $post->save();
-
-        return back()->with('success', 'Postingan ditolak.');
     }
 
 }
