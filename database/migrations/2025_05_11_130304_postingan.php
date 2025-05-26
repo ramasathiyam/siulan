@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('KontakWebsite');
             $table->string('KontakYoutube');
             $table->string('Poster');
-            $table->string('Status')->default('pending'); // nilai: pending, approved, rejected
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->timestamps();
         });
     }

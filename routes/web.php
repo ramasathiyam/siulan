@@ -23,8 +23,8 @@ Route::post('/', [loginController::class, 'login']);
 Route::get('/daftar', [daftarController::class, 'index'])->name('daftar');
 Route::post('/daftar', [daftarController::class, 'daftar']);
 Route::get('/adminpage', [adminController::class, 'index'])->name('admin');
-Route::get('/postingan/{id}/approve', [adminController::class, 'approve'])->name('postingan.approve');
+// Route::get('/postingan/{id}/approve', [adminController::class, 'approve'])->name('postingan.approve');
 Route::post('/postingan/{id}/approve', [adminController::class, 'approve'])->name('postingan.approve');
-Route::get('/postingan/{id}/reject', [adminController::class, 'reject'])->name('postingan.reject');
+// Route::get('/postingan/{id}/reject', [adminController::class, 'reject'])->name('postingan.reject');
 Route::post('/postingan/{id}/reject', [adminController::class, 'reject'])->name('postingan.reject');
 

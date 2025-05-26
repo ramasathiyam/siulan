@@ -24,6 +24,7 @@ class Posting extends Model
         'KontakInstagram',
         'KontakWebsite',
         'KontakYoutube',
-        'Poster'
+        'Poster',
+        'status'
     ];
 }
