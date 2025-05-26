@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('postingan', function (Blueprint $table) {
             $table->id();
-            $table->string('PaketPostingan');
+            $table->unsignedBigInteger('id_paket');
             $table->string('JudulKegiatan');
             $table->text('Deskripsi');
             $table->string('JenisKegiatan');
@@ -24,8 +24,12 @@ return new class extends Migration
             $table->string('KontakWebsite');
             $table->string('KontakYoutube');
             $table->string('Poster');
+            $table->string('Harga');
+            $table->string('Snap_token');
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->timestamps();
+
+            $table->foreign('id_paket')->references('id_paket')->on('paket')->onDelete('cascade');
         });
     }
 
