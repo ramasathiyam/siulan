@@ -25,6 +25,15 @@
               <input
                 type="text"
                 class="form-control"
+                placeholder="Email"
+                id="email"
+                name="email"
+              />
+            </div>
+            <div class="mb-3">
+              <input
+                type="text"
+                class="form-control"
                 placeholder="Nama Pengguna"
                 id="username"
                 name="username"

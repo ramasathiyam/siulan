@@ -12,7 +12,6 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
-    public $timestamps = false;
 
 
     /**
@@ -22,7 +21,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'username',
-        // 'email',
+        'email',
         'password',
     ];
 
