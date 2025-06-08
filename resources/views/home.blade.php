@@ -33,7 +33,7 @@
               <div class="col-md-6">
                 <div class="search-container">
 
-                  <input type="text" class="form-control search-input droper" placeholder="Cari Diini...">
+                  <input type="text" class="form-control search-input droper" placeholder="Cari Disini...">
                   <i class="fas fa-search search-icon"></i>
                 </div>
               </div>
