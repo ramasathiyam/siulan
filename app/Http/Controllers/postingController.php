@@ -50,7 +50,7 @@ class postingController extends Controller
         // Posting::create($request->all());
         // Simpan ke database dengan path poster yang benar
         Posting::create([
-            'PaketPostingan' => $request->PaketPostingan,
+            // 'PaketPostingan' => $request->PaketPostingan,
             'JudulKegiatan' => $request->JudulKegiatan,
             'Deskripsi' => $request->Deskripsi,
             'JenisKegiatan' => $request->JenisKegiatan,

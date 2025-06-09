@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Posting;
 
 class homeController extends Controller
 {
     public function index(){
-        $postingan = Posting::all();
-        return view('home',['postingan'=>$postingan]);
+        return view('');
     }
 
+    public function show(){
+        return view('');
+    }
 }
