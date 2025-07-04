@@ -103,7 +103,7 @@
                                 <td><img src="{{ asset('storage/' . $post->Poster) }}" width="60" /></td>
                                 <td>{{ $post->JudulKegiatan }}</td>
                                 <td>{{ $post->Kategori }}</td>
-                                <td>{{ ucfirst($post->Status) }}</td>
+                                <td>{{ ucfirst($post->status) }}</td>
 
                                 <td>
                                     <form action="{{ route('postingan.approve', $post->id) }}" method="POST" style="display: inline-block;">

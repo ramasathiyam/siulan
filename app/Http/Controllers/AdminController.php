@@ -13,6 +13,7 @@ class AdminController extends Controller
     {
         $data = Posting::all(); // ambil semua data dari tabel postings
         return view('admin', compact('data')); // kirim ke view
+        
     }
 
     public function approve($id)
@@ -27,9 +28,9 @@ class AdminController extends Controller
     public function reject($id)
     {
         $post = Posting::findOrFail($id);
-        $post->status = 'rejected';
-        $post->save();
+        $post->delete();  // hapus data postingan dari database
 
-        return back()->with('success', 'Postingan ditolak.');
+        return back()->with('success', 'Postingan berhasil dihapus.');
     }
+
 }

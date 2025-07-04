@@ -9,7 +9,7 @@
                 <h1 class="text-justify text-lg-start color-wht">Satu Tempat, Prestasi Tanpa Batas di Udayana</h1>
                 <p style="text-align:justify;" class="color-wht mt-3">SIULAN (Seputar Informasi Lomba dan Seminar) adalah platform yang memudahkan mahasiswa Universitas Udayana dalam mencari dan membagikan informasi lomba serta seminar, baik akademik maupun non-akademik. </p>
                 <!-- <button class="px-4 py-1 rounded" style="background-color:#E8A652 ; border-color : #E8A652;">Log in</button> -->
-                <a href="login.html">
+                <a href="{{ route('login') }}">
                   <button type="button" class="btn btn-sm border-0 px-5 py-2 mt-3 custom-button">
                     Telusuri
                   </button>
@@ -33,7 +33,7 @@
               <div class="col-md-6">
                 <div class="search-container">
 
-                  <input type="text" class="form-control search-input droper" placeholder="Cari Diini...">
+                  <input type="text" class="form-control search-input droper" placeholder="Cari Disini...">
                   <i class="fas fa-search search-icon"></i>
                 </div>
               </div>
@@ -80,13 +80,31 @@
         
         <div id="carouselExampleControls" class="carousel" data-bs-ride="carousel">
           <div class="carousel-inner text-center">
+            @foreach ($postingan as $postingantunggal )
+              
+            
             <div class="carousel-item ">
               <div class="card ">
                 <img src="img/Group 26086203.png" alt="...">
                 <div class="card-body">
+                  <h5 class="mt-3">{{ $postingantunggal->JudulKegiatan }}</h5>
+                  <p class="card-text">{{ $postingantunggal->Lokasi}}</p>
+                 <a href="{{ route('lombaterbaru', ['id' => $postingantunggal->id]) }}" class="btn custom-button">Baca Selengkapnya</a>
+                </div>
+              </div>
+            </div>
+            @endforeach
+
+
+{{-- {{ $postingantunggal->judul_blog }} --}}
+            
+            {{-- <div class="carousel-item">
+              <div class="card" >
+                <img src="img/Group 26086203.png"  alt="...">
+                <div class="card-body">
                   <h5 class="mt-3">Inovasi Sains Udayana 2025</h5>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn custom-button"  onclick= "window.location.href='lombaterbaru.html'">Baca Selengkapnya</a>
+                  <a href="#" class="btn custom-button"  onclick= "window.location.href='{{ route('lombaterbaru')}}'">Baca Selengkapnya</a>
                 </div>
               </div>
             </div>
@@ -96,17 +114,7 @@
                 <div class="card-body">
                   <h5 class="mt-3">Inovasi Sains Udayana 2025</h5>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn custom-button"  onclick= "window.location.href='lombaterbaru.html'">Baca Selengkapnya</a>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="card" >
-                <img src="img/Group 26086203.png"  alt="...">
-                <div class="card-body">
-                  <h5 class="mt-3">Inovasi Sains Udayana 2025</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn custom-button"  onclick= "window.location.href='lombaterbaru.html'">Baca Selengkapnya</a>
+                  <a href="#" class="btn custom-button"  onclick= "window.location.href='{{ route('lombaterbaru')}}'">Baca Selengkapnya</a>
                 </div>
               </div>
             </div>
@@ -116,7 +124,7 @@
                 <div class="card-body">
                   <h5 class="mt-3">Inovasi Sains Udayana 2025</h5>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn custom-button"  onclick= "window.location.href='lombaterbaru.html'">Baca Selengkapnya</a>
+                  <a href="#" class="btn custom-button"  onclick= "window.location.href='{{ route('lombaterbaru')}}'">Baca Selengkapnya</a>
                 </div>
               </div>
             </div>
@@ -126,7 +134,7 @@
                 <div class="card-body">
                   <h5 class="mt-3">Inovasi Sains Udayana 2025</h5>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn custom-button"  onclick= "window.location.href='lombaterbaru.html'">Baca Selengkapnya</a>
+                  <a href="#" class="btn custom-button"  onclick= "window.location.href='{{ route('lombaterbaru')}}'">Baca Selengkapnya</a>
                 </div>
               </div>
             </div>
@@ -136,7 +144,7 @@
                 <div class="card-body">
                   <h5 class="mt-3">Inovasi Sains Udayana 2025</h5>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn custom-button"  onclick= "window.location.href='lombaterbaru.html'">Baca Selengkapnya</a>
+                  <a href="#" class="btn custom-button"  onclick= "window.location.href='{{ route('lombaterbaru')}}'">Baca Selengkapnya</a>
                 </div>
               </div>
             </div>
@@ -146,7 +154,17 @@
                 <div class="card-body">
                   <h5 class="mt-3">Inovasi Sains Udayana 2025</h5>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn custom-button"  onclick= "window.location.href='lombaterbaru.html'">Baca Selengkapnya</a>
+                  <a href="#" class="btn custom-button"  onclick= "window.location.href='{{ route('lombaterbaru')}}'">Baca Selengkapnya</a>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="card" >
+                <img src="img/Group 26086203.png"  alt="...">
+                <div class="card-body">
+                  <h5 class="mt-3">Inovasi Sains Udayana 2025</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn custom-button"  onclick= "window.location.href='{{ route('lombaterbaru')}}'">Baca Selengkapnya</a>
                 </div>
               </div>
             </div>
@@ -169,17 +187,7 @@
                   <a href="#" class="btn custom-button"  onclick= "window.location.href='lombaterbaru.html'">Baca Selengkapnya</a>
                 </div>
               </div>
-            </div>
-            <div class="carousel-item">
-              <div class="card" >
-                <img src="img/Group 26086203.png"  alt="...">
-                <div class="card-body">
-                  <h5 class="mt-3">Inovasi Sains Udayana 2025</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn custom-button"  onclick= "window.location.href='lombaterbaru.html'">Baca Selengkapnya</a>
-                </div>
-              </div>
-            </div>
+            </div> --}}
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
