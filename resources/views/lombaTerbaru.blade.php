@@ -93,6 +93,8 @@
         </div>
     </div>
 
+    
+    {{-- @php dd($lomba); @endphp --}}
     <div class="card">
         <div class="row g-0 d-flex" style="border-radius: 30px;">
             <div class="col-md-7">
@@ -101,7 +103,7 @@
 
             <div class="col-md-5 pe-4 ps-5">
 
-                <h5 class="card-title fw-bold pt-3 pb-1" style="text-align: center;">Inovasi Sains Udayana 2025</h5>
+                <h5 class="card-title fw-bold pt-3 pb-1" style="text-align: center;">{{ $postingan->JudulKegiatan }}</h5>
                 <hr>
                 <div class="container pb-3">
                     <div class="row">
@@ -111,13 +113,13 @@
                       <div class="col bg-light border d-flex justify-content-center align-items-center p-3" style="border-radius: 30px; width: 60; height: 40px;">Lomba</div>
                     </div>
                 </div>
-                <p class="card-text">Mahasiswa<br>1 April - 21 Mei 2025<br>Online | 💰 Rp 35.000</p>
+            <p class="card-text">{{ $postingan->Peserta}}<br>{{ $postingan->TanggalKegiatan}}<br>{{ $postingan->Lokasi}}| 💰 Rp {{ $postingan->Harga}}</p>
                 <hr>
-                <h5>Universitas Udayana</h5>
+                <h5>detail kalimat lain</h5>
                 <div class="d-grid gap-2 col-10 mx-auto pt-2">
 
-                    <button class="text-white border shadow droper" style="border:0; border-radius: 7px; height: 40px;" type="button">Daftar Sekarang >></button>
-
+                    {{-- <button class="text-white border shadow droper" style="border:0; border-radius: 7px; height: 40px;" type="button">Daftar Sekarang >></button> --}}
+                     <a href="{{ route('daftarlomba', ['id' => $postingan->id]) }}" class="btn custom-button">Daftar Sekarang</a>
                 </div>
                 <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
             </div>
@@ -160,6 +162,7 @@
         </div>
 
      </div>
+     
 </div>
 
 

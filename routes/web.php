@@ -10,11 +10,22 @@ use App\Http\Controllers\penandaController;
 use App\Http\Controllers\postingController;
 use App\Http\Controllers\riwayatController;
 use App\Http\Controllers\tentangkamiController;
+use App\Http\Controllers\daftarlombaController;
+use App\Http\Controllers\checkoutController;
+
 
 Route::get('/home', [homeController::class, 'index'] )->name('home');
 Route::get('/posting', [postingController::class, 'index'] )->name('posting');
 Route::post('/posting', [postingController::class,'posting']);
-Route::get('/lombaterbaru', [lombaTerbaru::class, 'index'] )->name('lombaterbaru');
+// Route::get('/lombaterbaru', [lombaTerbaru::class, 'index'] )->name('lombaterbaru');
+
+Route::post('/checkout-final', [daftarlombaController::class, 'store'])->name('checkout.final'); // action form
+Route::get('/checkout/{id}', [daftarlombaController::class, 'show'])->name('checkout.show');
+Route::post('/checkout-preview', [daftarlombaController::class, 'preview'])->name('checkout.preview');
+// Route::post('/checkout/{id}', [checkoutController::class, 'show'])->name('checkout');
+Route::get('/lomba/{id}', [lombaterbaru::class, 'show'])->name('lombaterbaru');
+Route::get('/daftarlomba/{id}', [daftarlombaController::class, 'show'])->name('daftarlomba');
+// Route::get('/daftarlomba/{id}', [daftarlombaController::class, 'store'])->name('daftar.lomba');
 Route::get('/riwayat', [riwayatController::class, 'index'] )->name('riwayat');
 Route::get('/penanda', [penandaController::class, 'index'] )->name('penanda');
 Route::get('/tentangkami', [tentangkamiController::class, 'index'] )->name('tentangkami');
