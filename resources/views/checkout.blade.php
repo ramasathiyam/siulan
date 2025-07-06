@@ -47,18 +47,20 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('checkout.final') }}" method="POST">
-                        @csrf
-                        @foreach ($data as $key => $value)
-                            <input type="hidden" name="{{ $key }}" value="{{ $value }}">
-                        @endforeach
-
-                        <div class="d-grid mt-4">
-                            <button type="submit" class="btn text-white" style="background-color: #F4A949; border-radius: 10px;">
-                                Checkout
+                    <!-- Midtrans Payment Section -->
+                    <div class="mt-4">
+                        <h5 class="text-center mb-3" style="color: #283B8A;">Pembayaran</h5>
+                        
+                        <!-- Button untuk trigger pembayaran -->
+                        <div class="d-grid">
+                            <button id="pay-button" class="btn text-white" style="background-color: #F4A949; border-radius: 10px; padding: 12px;">
+                                Bayar Sekarang - Rp{{ number_format($postingan->Harga ?? 0, 0, ',', '.') }}
                             </button>
                         </div>
-                    </form>
+                        
+                        <!-- Container untuk embed Midtrans -->
+                        <div id="snap-container" class="mt-3"></div>
+                    </div>
 
                     <br>
                     <div class="text-center mt-3">
@@ -70,4 +72,109 @@
         </div>
     </div>
 </div>
+
+<!-- Midtrans Snap.js -->
+<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}"></script>
+<!-- Untuk production gunakan: https://app.midtrans.com/snap/snap.js -->
+
+<!-- Tambahkan PHP untuk handle payment success -->
+@if(request()->has('payment_success'))
+    <?php
+    try {
+        // Simpan data ke database sesuai struktur tabel
+        DB::table('pendaftar')->insert([
+            'id_postingan' => $postingan->id,
+            'nama' => $data['nama'],
+            'email' => $data['email'],
+            'telepon' => $data['telepon'],
+            'kategori' => $data['kategori'],
+            'institusi' => $data['institusi'],
+            'keterangan' => $data['keterangan'] ?? 'NULL',
+            'snap_token' => $snapToken,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        
+        // Redirect ke halaman sukses
+        echo "<script>
+            alert('Pembayaran berhasil dan data telah disimpan!');
+            window.location.href = '/home';
+        </script>";
+    } catch (Exception $e) {
+        echo "<script>
+            alert('Pembayaran berhasil tapi gagal menyimpan data: " . $e->getMessage() . "');
+            console.error('Error:', '" . $e->getMessage() . "');
+        </script>";
+    }
+    ?>
+@endif
+
+<script type="text/javascript">
+    // Trigger pembayaran ketika button diklik
+    var payButton = document.getElementById('pay-button');
+    payButton.addEventListener('click', function () {
+        // Trigger snap popup/embed dengan token dari database
+        window.snap.embed('{{ $snapToken }}', {
+            embedId: 'snap-container',
+            onSuccess: function(result) {
+                // Callback ketika pembayaran berhasil
+                console.log('Payment success:', result);
+                
+                // Langsung simpan data menggunakan AJAX
+                fetch('{{ url()->current() }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        payment_success: '1',
+                        transaction_id: result.transaction_id,
+                        payment_type: result.payment_type,
+                        order_id: result.order_id,
+                        // Data pendaftar
+                        nama: '{{ $data["nama"] }}',
+                        email: '{{ $data["email"] }}',
+                        telepon: '{{ $data["telepon"] }}',
+                        kategori: '{{ $data["kategori"] }}',
+                        institusi: '{{ $data["institusi"] }}',
+                        keterangan: '{{ $data["keterangan"] ?? "" }}',
+                        id_postingan: '{{ $postingan->id }}',
+                        snap_token: '{{ $snapToken }}'
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Pembayaran berhasil dan data telah disimpan!');
+                        window.location.href = '/home';
+                    } else {
+                        alert('Pembayaran berhasil tapi gagal menyimpan data: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Pembayaran berhasil tapi terjadi kesalahan sistem. Silakan hubungi admin.');
+                    // Tetap redirect ke home meskipun ada error
+                    window.location.href = '/home';
+                });
+            },
+            onPending: function(result) {
+                // Callback ketika pembayaran pending
+                console.log('Payment pending:', result);
+                alert('Pembayaran pending, silakan selesaikan pembayaran.');
+            },
+            onError: function(result) {
+                // Callback ketika terjadi error
+                console.log('Payment error:', result);
+                alert('Terjadi kesalahan dalam pembayaran.');
+            },
+            onClose: function() {
+                // Callback ketika popup ditutup
+                console.log('Payment popup closed');
+            }
+        });
+    });
+</script>
 @endsection

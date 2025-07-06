@@ -20,6 +20,7 @@ return new class extends Migration
             $table->enum('kategori', ['Lomba', 'Seminar', 'Webinar']);
             $table->string('institusi');
             $table->text('keterangan')->nullable();
+            $table->string('snap_token')->nullable();
             $table->timestamps();
 
             $table->foreign('id_postingan')->references('id')->on('postingan')->onDelete('cascade');
