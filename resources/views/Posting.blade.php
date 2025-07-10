@@ -50,10 +50,20 @@
                 <h5><label for="kategori" class="form-label">Kategori</label></h5>
                 @error('Kategori') <small class="text-danger">{{ $message }}</small>@enderror
                 <select class="form-select" id="kategori" name="Kategori" required>
-                    <option selected>--Pilih Kategori--</option>
-                    <option value="Teknologi">Teknologi</option>
-                    <option value="Bisnis">Bisnis</option>
+                    <option selected disabled>--Pilih Kategori--</option>
+                    <option value="Teknologi & IT">Teknologi & IT</option>
+                    <option value="Bisnis & Kewirausahaan">Bisnis & Kewirausahaan</option>
+                    <option value="Desain & Kreatif">Desain & Kreatif</option>
+                    <option value="Marketing & Komunikasi">Marketing & Komunikasi</option>
+                    <option value="Pengembangan Diri">Pengembangan Diri</option>
+                    <option value="Pendidikan">Pendidikan</option>
+                    <option value="Kesehatan & Kebugaran">Kesehatan & Kebugaran</option>
+                    <option value="Seni & Budaya">Seni & Budaya</option>
+                    <option value="Musik & Hiburan">Musik & Hiburan</option>
                     <option value="Olahraga">Olahraga</option>
+                    <option value="Lingkungan">Lingkungan</option>
+                    <option value="Sosial & Komunitas">Sosial & Komunitas</option>
+                    <option value="Lainnya">Lainnya</option>
                 </select>
             </div>
         </div>

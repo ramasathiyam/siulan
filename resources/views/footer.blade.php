@@ -6,7 +6,7 @@
           <h4>Company</h4>
           <ul class="list-unstyled pt-2">
             <a class="navbar-brand" href="#">
-              <img src="img/Logo.png" alt="Logo" width="30" height="24" class="img-fluid"> Siulan
+              <img src="{{ asset('img/LogoBaru.png') }}" alt="Logo" width="30" height="24" class="img-fluid"> LearnAds
             </a>
             <li class="py-1">FAQs</li>
           </ul>
