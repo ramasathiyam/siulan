@@ -12,24 +12,27 @@ class Posting extends Model
     protected $table = 'postingan';
 
     protected $fillable = [
-        'id_paket',
-        'JudulKegiatan',
-        'Deskripsi',
-        'JenisKegiatan',
-        'Kategori',
-        'TanggalKegiatan',
-        'Peserta',
-        'Lokasi',
-        'TautanPendaftaran',
-        'LinkGrup',
-        'Harga',
-        'KontakInstagram',
-        'KontakWebsite',
-        'KontakYoutube',
-        'Poster',
-        'Snap_token',
-        'status',
-    ];
+    'id_paket',
+    'user_id',
+    'JudulKegiatan',
+    'Deskripsi',
+    'JenisKegiatan',
+    'Kategori',
+    'TanggalKegiatan',
+    'Peserta',
+    'Lokasi',
+    'Penyelenggara',
+    'TautanPendaftaran',
+    'LinkGrup',
+    'Harga',
+    'KontakInstagram',
+    'KontakWebsite',
+    'KontakYoutube',
+    'Poster',
+    'Snap_token',
+    'status',
+    'rejection_note', // ✅ Tambahkan ini
+];
 
     // Relasi ke Paket
     public function paket()

@@ -12,8 +12,8 @@ use App\Http\Controllers\riwayatController;
 use App\Http\Controllers\tentangkamiController;
 use App\Http\Controllers\daftarlombaController;
 use App\Http\Controllers\logoutController;
-
-// use App\Http\Controllers\checkoutController;
+use App\Http\Controllers\checkoutController;
+use App\Http\Controllers\PembayaranController;
 
 Route::middleware('guest')->group(function(){
     Route::get('/', [loginController::class, 'index'])->name('login');
@@ -36,6 +36,9 @@ Route::middleware('auth')->group(function(){
     Route::post('/checkout-preview', [daftarlombaController::class, 'preview'])->name('checkout.preview');
     Route::post('/checkout-final', [daftarlombaController::class, 'store'])->name('checkout.final');
     Route::get('/daftarlomba/{id}', [daftarlombaController::class, 'show'])->name('daftarlomba');
+    Route::get('/bayar/{id}', [PembayaranController::class, 'form'])->name('pembayaran.form');
+    Route::get('/posting/preview/{id}', [PostingController::class, 'preview'])->name('posting.preview');
+    Route::post('/posting/verifikasi/{id}', [PostingController::class, 'verifikasi'])->name('posting.verifikasi');
 });
 
 Route::middleware('auth','cek.role:admin')->group(function(){

@@ -23,7 +23,7 @@
               <a class="nav-link" href="{{ route('riwayat') }}">Riwayat</a>
             </li>
             <li class="nav-item">
-              <a class="btn custom-button ms-3" href="{{ route('posting') }}">Unggah</a>
+              <a class="btn btn-warning ms-3 text-white" href="{{ route('posting') }}">Unggah</a>
             </li>
 
             @auth
