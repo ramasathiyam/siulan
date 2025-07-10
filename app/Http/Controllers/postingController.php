@@ -5,6 +5,7 @@ use App\Models\Paket;
 use App\Models\Posting;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class postingController extends Controller
@@ -74,8 +75,9 @@ class postingController extends Controller
 
     $snapToken = ''; // atau generate dari Midtrans jika sudah terhubung
 
-   Posting::create([
+   $post = Posting::create([
     'id_paket' => $idPaket,
+    'user_id' =>  Auth::id(),
     'JudulKegiatan' => $request->JudulKegiatan,
     'Deskripsi' => $request->Deskripsi,
     'JenisKegiatan' => $request->JenisKegiatan,
@@ -93,6 +95,8 @@ class postingController extends Controller
     'Snap_token' => $snapToken,
 ]);
 
+return redirect()->route('posting.preview', ['id' => $post->id]);
+
             return redirect()->route('home')->with('success', 'Postingan berhasil ditambahkan.');
         }
 
@@ -106,4 +110,36 @@ class postingController extends Controller
             }
         }
 
+
+     public function preview($id)
+    {
+        $postingan = Posting::findOrFail($id);
+
+        // Pastikan hanya pemilik postingan yang bisa lihat preview-nya
+        if ($postingan->user_id != Auth::id()) {
+            abort(403); // unauthorized
+        }
+
+        return view('postinganPreview', compact('postingan'));
+    }   
+
+
+    public function verifikasi($id)
+    {
+        $postingan = Posting::findOrFail($id);
+
+        if ($postingan->user_id != Auth::id()) {
+            abort(403); // Bukan miliknya
+        }
+
+        // Ubah status menjadi pending jika belum diset
+        $postingan->status = 'pending';
+        $postingan->save();
+
+        return redirect()->route('riwayat')->with('success', 'Postingan telah diverifikasi dan menunggu persetujuan admin.');
+    }
+
 }
+
+
+

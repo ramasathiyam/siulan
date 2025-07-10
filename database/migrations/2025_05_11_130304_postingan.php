@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('postingan', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_paket');
+            $table->unsignedBigInteger('user_id');
 
             $table->string('JudulKegiatan');
             $table->text('Deskripsi');
@@ -33,9 +34,11 @@ return new class extends Migration
             $table->string('Poster');
             $table->string('Snap_token')->nullable();
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
+            $table->text('rejection_note')->nullable(); // alasan penolakan (baru)
             $table->timestamps();
 
             $table->foreign('id_paket')->references('id_paket')->on('paket')->onDelete('cascade');
+              $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

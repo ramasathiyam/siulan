@@ -15,10 +15,10 @@ class Pendaftar extends Model
         'nama',
         'email',
         'telepon',
-        'kategori',
         'institusi',
         'keterangan',
         'id_postingan',
+        'snap_token',
     ];
 
      public function postingan()

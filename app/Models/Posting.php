@@ -13,6 +13,7 @@ class Posting extends Model
 
     protected $fillable = [
         'id_paket',
+        'user_id',
         'JudulKegiatan',
         'Deskripsi',
         'JenisKegiatan',

@@ -30,16 +30,6 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="kategori" class="form-label">Kategori Kegiatan</label>
-                            <select class="form-select" id="kategori" name="kategori" required>
-                                <option selected disabled value="">Pilih salah satu</option>
-                                <option value="Lomba">Lomba</option>
-                                <option value="Seminar">Seminar</option>
-                                <option value="Webinar">Webinar</option>
-                            </select>
-                        </div>
-
-                        <div class="mb-3">
                             <label for="institusi" class="form-label">Asal Institusi</label>
                             <input type="text" class="form-control" id="institusi" name="institusi" required>
                         </div>
