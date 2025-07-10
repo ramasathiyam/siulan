@@ -23,6 +23,7 @@ return new class extends Migration
             $table->date('TanggalKegiatan'); // Tambahan
             $table->string('Peserta'); // Tambahan (Umum/Mahasiswa)
             $table->string('Lokasi');
+            $table->string('Penyelenggara');
             $table->string('TautanPendaftaran');
             $table->string('LinkGrup'); // Tambahan (WhatsApp/Telegram)
             $table->integer('Harga');// Tambahan

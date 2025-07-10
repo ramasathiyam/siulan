@@ -30,6 +30,11 @@
                         </div>
 
                         <div class="mb-3">
+                            <label for="kategori" class="form-label">Kategori Kegiatan : {{ $postingan->Kategori }} </label>
+                           
+                        </div>
+
+                        <div class="mb-3">
                             <label for="institusi" class="form-label">Asal Institusi</label>
                             <input type="text" class="form-control" id="institusi" name="institusi" required>
                         </div>

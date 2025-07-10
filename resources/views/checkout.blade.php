@@ -14,7 +14,6 @@
                     <p><strong>Nama:</strong> {{ $data['nama'] }}</p>
                     <p><strong>Email:</strong> {{ $data['email'] }}</p>
                     <p><strong>Telepon:</strong> {{ $data['telepon'] }}</p>
-                    <p><strong>Kategori:</strong> {{ $data['kategori'] }}</p>
                     <p><strong>Institusi:</strong> {{ $data['institusi'] }}</p>
                     <p><strong>Keterangan:</strong> {{ $data['keterangan'] ?? '-' }}</p>
                 </div>
