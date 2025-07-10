@@ -19,6 +19,7 @@ class Pendaftar extends Model
         'institusi',
         'keterangan',
         'id_postingan',
+        'snap_token',
     ];
 
      public function postingan()
