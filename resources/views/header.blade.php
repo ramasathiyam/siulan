@@ -3,7 +3,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #283B8A">
       <div class="container">
         <a class="navbar-brand" href="#">
-          <img src="img/Logo.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top"> LearnAds
+          <img src="{{ asset('img/LogoBaru.png') }}" alt="Logo" width="50" height="24" class="d-inline-block align-text-top"> LearnAds
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -23,7 +23,7 @@
               <a class="nav-link" href="{{ route('riwayat') }}">Riwayat</a>
             </li>
             <li class="nav-item">
-              <a class="btn custom-button ms-3" href="{{ route('posting') }}">Unggah</a>
+              <a class="btn btn-warning ms-3 text-white" href="{{ route('posting') }}">Unggah</a>
             </li>
             </li>
           </ul>

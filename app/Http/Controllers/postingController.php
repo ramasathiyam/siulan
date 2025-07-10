@@ -24,7 +24,7 @@ class postingController extends Controller
             'JudulKegiatan' => 'required|string',
             'Deskripsi' => 'required|string',
             'JenisKegiatan' => 'required|string|in:Lomba,Seminar,Webinar',
-            'Kategori' => 'required|string|in:Teknologi,Bisnis,Olahraga',
+            'Kategori' => 'required|string|in:Teknologi & IT,Bisnis & Kewirausahaan,Desain & Kreatif,Marketing & Komunikasi,Pengembangan Diri,Pendidikan,Kesehatan & Kebugaran,Seni & Budaya,Musik & Hiburan,Olahraga,Lingkungan,Sosial & Komunitas,Lainnya',
             'Lokasi' => 'required|string',
             'TautanPendaftaran' => 'required|url',
             'Harga' => 'required|integer|min:0', 
