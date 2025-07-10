@@ -27,7 +27,10 @@
                 <div class="card-body p-4 text-dark">
                     <p><strong>Nama:</strong> {{ $data['nama'] }}</p>
                     <p><strong>Email:</strong> {{ $data['email'] }}</p>
-                    {{-- Detail lainnya --}}
+                    <p><strong>Telepon:</strong> {{ $data['telepon'] }}</p>
+                    <p><strong>Institusi:</strong> {{ $data['institusi'] }}</p>
+                    <p><strong>Keterangan:</strong> {{ $data['keterangan'] ?? '-' }}</p>
+
                 </div>
 
                 <div class="card-header text-center text-white" style="background-color: #283B8A;">

@@ -99,6 +99,15 @@
         @error('Lokasi') <small class="text-danger">{{ $message }}</small>@enderror
         <input type="text" name="Lokasi" class="form-control mb-3" placeholder="Lokasi Kegiatan disini..." value="{{ old('Lokasi') }}">
 
+       
+       {{-- Penyelenggara --}}
+        <h5 class="mb-3">Penyelenggara</h5>
+        @error('Penyelenggara') <small class="text-danger">{{ $message }}</small> @enderror
+        <input type="text" name="Penyelenggara" class="form-control mb-3" placeholder="Masukkan nama penyelenggara..." value="{{ old('Penyelenggara') }}">
+
+       
+       
+       
         {{-- Tautan Pendaftaran --}}
         <h5 class="mb-3">Tautan Pendaftaran</h5>
         @error('TautanPendaftaran') <small class="text-danger">{{ $message }}</small>@enderror

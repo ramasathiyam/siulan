@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Posting;
+use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
@@ -9,11 +10,16 @@ class AdminController extends Controller
     //     return view('admin');
     // }
 
-     public function index()
+    public function index()
     {
-        $data = Posting::all(); // ambil semua data dari tabel postings
-        return view('admin', compact('data')); // kirim ke view
-        
+        $data = Posting::where('status', 'pending')->get();
+        return view('admin', compact('data'));
+    }
+
+    public function previewadmin($id) 
+    {
+    $postingan = Posting::findOrFail($id);
+    return view('adminPostingPreview', ['postingan'=>$postingan]);
     }
 
     public function approve($id)
@@ -22,15 +28,21 @@ class AdminController extends Controller
         $post->status = 'approved';
         $post->save();
 
-        return back()->with('success', 'Postingan berhasil disetujui.');
+        return back()->with('success', 'Postingan disetujui.');
     }
 
-    public function reject($id)
+   public function reject(Request $request, $id)
     {
-        $post = Posting::findOrFail($id);
-        $post->delete();  // hapus data postingan dari database
+        $request->validate([
+            'rejection_note' => 'required|string|max:1000'
+        ]);
 
-        return back()->with('success', 'Postingan berhasil dihapus.');
+        $post = Posting::findOrFail($id);
+        $post->status = 'rejected';
+        $post->rejection_note = $request->rejection_note;
+        $post->save();
+
+        return back()->with('success', 'Postingan ditolak dengan catatan.');
     }
 
 }

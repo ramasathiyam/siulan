@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('nama');
             $table->string('email');
             $table->string('telepon');
-            $table->enum('kategori', ['Lomba', 'Seminar', 'Webinar']);
             $table->string('institusi');
             $table->text('keterangan')->nullable();
             $table->string('snap_token')->nullable();
