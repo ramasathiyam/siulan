@@ -154,7 +154,7 @@
         </div>
 
         <div class="gap-3 d-flex justify-content-center align-items-center ">
-            <button type="button" class="btn btn-warning shadow">Bookmark</button>
+            <button type="button" class="btn btn-warning shadow">Penanda</button>
             <button type="button" class="btn btn-danger shadow">Laporkan</button>
             <button type="button" class="btn btn-success shadow">Panduan Lomba</button>
             <button type="button" class="btn btn-info shadow">Bagikan</button>
