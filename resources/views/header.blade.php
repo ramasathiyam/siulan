@@ -2,7 +2,7 @@
 <section>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #283B8A">
       <div class="container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand">
           <img src="img/Logo.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top"> LearnAds
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,7 +25,23 @@
             <li class="nav-item">
               <a class="btn custom-button ms-3" href="{{ route('posting') }}">Unggah</a>
             </li>
-            </li>
+
+            @auth
+    <li class="nav-item">
+        <form action="{{ route('logout') }}" method="POST" class="d-inline">
+            @csrf
+            <button type="submit" class="btn btn-danger ms-3">Logout</button>
+        </form>
+    </li>
+    @endauth
+
+    @guest
+    <li class="nav-item">
+        <a class="btn btn-success ms-3" href="{{ route('login') }}">Login</a>
+    </li>
+    @endguest
+
+
           </ul>
         </div>
       </div>
