@@ -12,7 +12,7 @@ use App\Http\Controllers\riwayatController;
 use App\Http\Controllers\tentangkamiController;
 use App\Http\Controllers\daftarlombaController;
 use App\Http\Controllers\logoutController;
-use App\Http\Controllers\checkoutController;
+// use App\Http\Controllers\checkoutController;
 use App\Http\Controllers\PembayaranController;
 
 Route::middleware('guest')->group(function(){
@@ -26,6 +26,7 @@ Route::get('/home', [homeController::class, 'index'] )->name('home');
 Route::get('/lomba/{id}', [lombaterbaru::class, 'show'])->name('lombaterbaru');
 Route::get('/tentangkami', [tentangkamiController::class, 'index'] )->name('tentangkami');
 Route::post('/logout', [logoutController::class, 'logout'])->name('logout');
+Route::get('/home/search', [homeController::class, 'search'])->name('search');
 
 Route::middleware('auth')->group(function(){
     Route::get('/posting', [postingController::class, 'index'])->name('posting');

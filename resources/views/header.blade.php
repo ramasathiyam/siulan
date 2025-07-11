@@ -27,20 +27,19 @@
             </li>
 
             @auth
-    <li class="nav-item">
-        <form action="{{ route('logout') }}" method="POST" class="d-inline">
-            @csrf
-            <button type="submit" class="btn btn-danger ms-3">Logout</button>
-        </form>
-    </li>
-    @endauth
+            <li class="nav-item">
+                <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                    @csrf
+                    <button type="submit" class="btn btn-danger ms-3">Logout</button>
+                </form>
+            </li>
+            @endauth
 
-    @guest
-    <li class="nav-item">
-        <a class="btn btn-success ms-3" href="{{ route('login') }}">Login</a>
-    </li>
-    @endguest
-
+            @guest
+            <li class="nav-item">
+                <a class="btn btn-success ms-3" href="{{ route('login') }}">Login</a>
+            </li>
+            @endguest
 
           </ul>
         </div>
