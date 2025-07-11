@@ -38,7 +38,7 @@
                     </form>
 
                     <div class="d-grid mt-2">
-                        <a href="{{ url('/') }}" class="btn btn-secondary">Batal</a>
+                        <a href="{{ url('/riwayat') }}" class="btn btn-secondary">Batal</a>
                     </div>
                 </div>
             </div>

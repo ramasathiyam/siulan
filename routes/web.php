@@ -16,13 +16,13 @@ use App\Http\Controllers\logoutController;
 use App\Http\Controllers\PembayaranController;
 
 Route::middleware('guest')->group(function(){
-    Route::get('/', [loginController::class, 'index'])->name('login');
-    Route::post('/', [loginController::class, 'login']);
+    Route::get('/login', [loginController::class, 'index'])->name('login');
+    Route::post('/login', [loginController::class, 'login']);
     Route::get('/daftar', [daftarController::class, 'index'])->name('daftar');
     Route::post('/daftar', [daftarController::class, 'daftar']);
 });
 
-Route::get('/home', [homeController::class, 'index'] )->name('home');
+Route::get('/', [homeController::class, 'index'] )->name('home');
 Route::get('/lomba/{id}', [lombaterbaru::class, 'show'])->name('lombaterbaru');
 Route::get('/tentangkami', [tentangkamiController::class, 'index'] )->name('tentangkami');
 Route::post('/logout', [logoutController::class, 'logout'])->name('logout');

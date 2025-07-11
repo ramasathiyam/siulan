@@ -2,15 +2,32 @@
 
 namespace App\Http\Controllers;
 use App\Models\Posting;
+use App\Models\paket;
 use Illuminate\Http\Request;
 
 
 class homeController extends Controller
 {
     public function index(){
-        $postingan = Posting::whereNotNull('Snap_token')->latest()->take(10)->get();
-        return view('home',['postingan'=>$postingan]);
+    $postingan = Posting::whereNotNull('snap_token')->latest()->take(10)->get();
+    $popupPost = null;
+
+    // Ambil popup hanya jika session belum ada
+    if (!session()->has('popup_shown')) {
+        $popupPost = Posting::whereHas('paket', function ($q) {
+                $q->where('nama', 'Premium');
+            })
+            ->whereNotNull('snap_token')
+            ->where('snap_token', '!=', '')
+            ->latest()
+            ->first();
+
+        session(['popup_shown' => true]);
     }
+
+    return view('home', compact('postingan', 'popupPost'));
+    }
+
 
     public function search(Request $request){
     $query = Posting::query();
@@ -42,6 +59,9 @@ class homeController extends Controller
     $postingan = $query->latest()->take(10)->get();
 
     return view('home', compact('postingan'));
-}
+    }
+
+    
+
 
 }

@@ -94,12 +94,12 @@
                 .then(response => {
                    
                     console.log('Data pendaftaran berhasil dikirim ke server.');
-                    window.location.href = '/home'; // <-- Langsung ke /home
+                    window.location.href = '/'; // <-- Langsung ke /home
                 })
                 .catch(error => {
                     console.error('Gagal mengirim data ke server:', error);
                     alert('Terjadi kesalahan saat menyimpan data Anda, namun pembayaran berhasil.');
-                    window.location.href = '/home'; // <-- Tetap ke /home jika ada error
+                    window.location.href = '/'; // <-- Tetap ke /home jika ada error
                 });
             },
             onPending: function(result) {

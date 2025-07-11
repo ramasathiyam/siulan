@@ -43,7 +43,7 @@
                     onSuccess: function (result) {
                         console.log('Payment success:', result);
                         alert('Pembayaran berhasil!');
-                        window.location.href = '{{ url("/home") }}';
+                        window.location.href = '{{ url("/") }}';
                     },
                     onPending: function (result) {
                         console.log('Payment pending:', result);

@@ -23,6 +23,41 @@
             </section>
         @endif
 
+        @if (isset($popupPost))
+          <!-- Modal pop-up -->
+          <div class="modal fade" id="popupPremium" tabindex="-1">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">{{ $popupPost->JudulKegiatan }}</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                  @if ($popupPost->Poster)
+                    <img src="{{ asset('storage/' . $popupPost->Poster) }}" class="card-img-top" alt="Poster" style="max-height: 200px; object-fit: cover;">
+                  @endif
+                  <p>{{ $popupPost->Deskripsi }}</p>
+                  <p><strong>Lokasi:</strong> {{ $popupPost->Lokasi }}</p>
+                </div>
+                <div class="modal-footer">
+                  <a href="{{ route('lombaterbaru', ['id' => $popupPost->id]) }}" class="btn btn-primary">Lihat Detail</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Script show modal saat halaman dimuat -->
+          <script>
+            window.addEventListener('DOMContentLoaded', () => {
+              if (!localStorage.getItem('popupShown')) {
+                var popup = new bootstrap.Modal(document.getElementById('popupPremium'));
+                popup.show();
+                localStorage.setItem('popupShown', 'true');
+              }
+            });
+          </script>
+        @endif
+
         <!-- seacrching -->
         <section class="py-5 mt-5 bg-light">
           <div class="container">
