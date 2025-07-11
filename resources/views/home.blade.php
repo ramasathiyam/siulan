@@ -75,7 +75,7 @@
               <div class="carousel-inner text-center">
 
                 @foreach ($postingan as $posting ) 
-                  @if (!empty($posting->Snap_token))
+                  @if (!empty($posting->snap_token))
                     <div class="carousel-item ">
                       <div class="card ">
                         @if ($posting->Poster)
@@ -108,7 +108,7 @@
           <h1 class="text-center mt-4 fw-bold">Hasil Penelusuran</h1>
           <div class="row row-cols-1 row-cols-md-3 g-4 m-1 mb-5 text-center">
             @forelse($postingan as $posting)
-              @if (!empty($posting->Snap_token))
+              @if (!empty($posting->snap_token))
                 <div class="col">
                   <div class="card h-100 p-3">
                     @if ($posting->Poster)

@@ -45,8 +45,10 @@
                         </div>
 
                        <div class="card-footer bg-white border-top-0 d-flex justify-content-between">
-                        @if ($post->status === 'approved')
+                        @if ($post->status === 'approved' && empty($post->snap_token))
                             <a href="{{ route('pembayaran.form', $post->id) }}" class="btn btn-success btn-sm">Lanjutkan pembayaran</a>
+                        @elseif ($post->status === 'approved' && !empty($post->snap_token))
+                            {{-- Tidak ada tombol --}}
                         @elseif ($post->status === 'pending')
                             <a href="{{ route('posting.preview', $post->id) }}" class="btn btn-outline-secondary btn-sm">Lihat Detail</a>
                         @elseif ($post->status === 'rejected')

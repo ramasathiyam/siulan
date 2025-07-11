@@ -27,16 +27,16 @@ Route::get('/lomba/{id}', [lombaterbaru::class, 'show'])->name('lombaterbaru');
 Route::get('/tentangkami', [tentangkamiController::class, 'index'] )->name('tentangkami');
 Route::post('/logout', [logoutController::class, 'logout'])->name('logout');
 Route::get('/home/search', [homeController::class, 'search'])->name('search');
+Route::get('/checkout/{id}', [daftarlombaController::class, 'show'])->name('checkout.show');
+Route::post('/checkout-preview', [daftarlombaController::class, 'preview'])->name('checkout.preview');
+Route::post('/checkout-final', [daftarlombaController::class, 'store'])->name('checkout.final');
+Route::get('/daftarlomba/{id}', [daftarlombaController::class, 'show'])->name('daftarlomba');
 
 Route::middleware('auth')->group(function(){
     Route::get('/posting', [postingController::class, 'index'])->name('posting');
     Route::post('/posting', [postingController::class,'posting']);
     Route::get('/riwayat', [riwayatController::class, 'index'] )->name('riwayat');
     Route::get('/penanda', [penandaController::class, 'index'] )->name('penanda');
-    Route::get('/checkout/{id}', [daftarlombaController::class, 'show'])->name('checkout.show');
-    Route::post('/checkout-preview', [daftarlombaController::class, 'preview'])->name('checkout.preview');
-    Route::post('/checkout-final', [daftarlombaController::class, 'store'])->name('checkout.final');
-    Route::get('/daftarlomba/{id}', [daftarlombaController::class, 'show'])->name('daftarlomba');
     // Route::get('/bayar/{id}', [PembayaranController::class, 'form'])->name('pembayaran.form');
     Route::get('/pembayaran/{id}/form', [PembayaranController::class, 'form'])->name('pembayaran.form');
     Route::post('/pembayaran/{id}/bayar', [PembayaranController::class, 'bayar'])->name('pembayaran.bayar');
