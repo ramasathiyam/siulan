@@ -42,6 +42,8 @@ Route::middleware('auth')->group(function(){
     Route::post('/pembayaran/{id}/bayar', [PembayaranController::class, 'bayar'])->name('pembayaran.bayar');
     Route::get('/posting/preview/{id}', [PostingController::class, 'preview'])->name('posting.preview');
     Route::post('/posting/verifikasi/{id}', [PostingController::class, 'verifikasi'])->name('posting.verifikasi');
+
+    Route::post('/tandai/{id}', [penandaController::class, 'tandai'])->name('postingan.tandai');
 });
 
 Route::middleware('auth','cek.role:admin')->group(function(){

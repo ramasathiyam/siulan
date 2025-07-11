@@ -73,7 +73,18 @@
 
             <!-- Tombol Aksi -->
             <div class="p-4 border-top d-flex flex-wrap gap-2 justify-content-center">
-                <button class="btn btn-warning shadow">Bookmark</button>
+                @php
+                $sudahDitandai = \App\Models\Penanda::where('user_id', Auth::id())->where('postingan_id', $postingan->id)->exists();
+                @endphp
+
+                @if ($sudahDitandai)
+                <button class="btn btn-secondary" disabled>Sudah Ditandai</button>
+                @else
+                <form action="{{ route('postingan.tandai', $postingan->id) }}" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-warning">Tandai</button>
+                </form>
+                @endif
                 <button class="btn btn-danger shadow">Laporkan</button>
                 <button class="btn btn-info shadow">Bagikan</button>
             </div>
