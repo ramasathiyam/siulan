@@ -36,7 +36,9 @@ Route::middleware('auth')->group(function(){
     Route::post('/checkout-preview', [daftarlombaController::class, 'preview'])->name('checkout.preview');
     Route::post('/checkout-final', [daftarlombaController::class, 'store'])->name('checkout.final');
     Route::get('/daftarlomba/{id}', [daftarlombaController::class, 'show'])->name('daftarlomba');
-    Route::get('/bayar/{id}', [PembayaranController::class, 'form'])->name('pembayaran.form');
+    // Route::get('/bayar/{id}', [PembayaranController::class, 'form'])->name('pembayaran.form');
+    Route::get('/pembayaran/{id}/form', [PembayaranController::class, 'form'])->name('pembayaran.form');
+    Route::post('/pembayaran/{id}/bayar', [PembayaranController::class, 'bayar'])->name('pembayaran.bayar');
     Route::get('/posting/preview/{id}', [PostingController::class, 'preview'])->name('posting.preview');
     Route::post('/posting/verifikasi/{id}', [PostingController::class, 'verifikasi'])->name('posting.verifikasi');
 });
@@ -45,5 +47,6 @@ Route::middleware('auth','cek.role:admin')->group(function(){
     Route::get('/adminpage', [adminController::class, 'index'])->name('admin');
     Route::post('/postingan/{id}/approve', [adminController::class, 'approve'])->name('postingan.approve');
     Route::post('/postingan/{id}/reject', [adminController::class, 'reject'])->name('postingan.reject');
+    Route::get('/admin/preview/{id}', [AdminController::class, 'previewadmin'])->name('admin.preview');
 });
 

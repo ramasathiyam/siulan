@@ -7,7 +7,7 @@
     <input type="hidden" name="nama" value="{{ $data['nama'] }}">
     <input type="hidden" name="email" value="{{ $data['email'] }}">
     <input type="hidden" name="telepon" value="{{ $data['telepon'] }}">
-    <input type="hidden" name="kategori" value="{{ $data['kategori'] }}">
+    <input type="hidden" name="kategori" value="{{ $postingan->id }}">
     <input type="hidden" name="institusi" value="{{ $data['institusi'] }}">
     <input type="hidden" name="keterangan" value="{{ $data['keterangan'] ?? '' }}">
     <input type="hidden" name="id_postingan" value="{{ $postingan->id }}">
