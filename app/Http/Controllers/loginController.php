@@ -16,6 +16,7 @@ class loginController extends Controller
             'password'=>'required|min:8',
         ]);
         
+        session()->forget('popup_shown');
                 // Mencoba untuk melakukan otentikasi
         if (Auth::attempt($credentials)) {
             // Penting untuk keamanan: regenerate session setelah login
