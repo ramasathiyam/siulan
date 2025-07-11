@@ -29,7 +29,7 @@ class Posting extends Model
     'KontakWebsite',
     'KontakYoutube',
     'Poster',
-    'Snap_token',
+    'snap_token',
     'status',
     'rejection_note', // ✅ Tambahkan ini
 ];

@@ -33,7 +33,7 @@ return new class extends Migration
             $table->string('KontakYoutube');
 
             $table->string('Poster');
-            $table->string('Snap_token')->nullable();
+            $table->string('snap_token')->nullable();
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->text('rejection_note')->nullable(); // alasan penolakan (baru)
             $table->timestamps();
