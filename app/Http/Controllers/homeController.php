@@ -16,7 +16,7 @@ class homeController extends Controller
     $query = Posting::query();
     
 
-    $query->whereNotNull('Snap_token')->where('Snap_token', '!=', '');
+    $query->whereNotNull('snap_token')->where('snap_token', '!=', '');
 
     // Filter pencarian teks
     if ($request->filled('search')) {
