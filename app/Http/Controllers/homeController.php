@@ -20,6 +20,7 @@ class homeController extends Controller
 
     // Filter pencarian teks
     if ($request->filled('search')) {
+        $search = strtolower($request->search);
         $query->where(function ($q) use ($request) {
             $q->where('JudulKegiatan', 'like', '%' . $request->search . '%')
               ->orWhere('Deskripsi', 'like', '%' . $request->search . '%')
