@@ -73,6 +73,7 @@ class PostingController extends Controller
             2, 3 => $tanggalAktif->copy()->addDays(10), // Medium & Premium
         };
 
+        //Kondisi jika expired
        Posting::where('tanggal_expired', '<=', Carbon::now())
         ->whereNotNull('snap_token')
         ->update(['snap_token' => null]);
