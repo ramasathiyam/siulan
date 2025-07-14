@@ -3,7 +3,13 @@
 @section('body')
 <div class="container mt-5">
     <h3>Bayar Postingan: {{ $post->JudulKegiatan }}</h3>
-    <p>Total yang harus dibayar: <strong>Rp{{ number_format($paket->harga, 0, ',', '.') }}</strong></p>
+    
+    {{-- Tampilkan harga upload sebenarnya --}}
+    <p>Total yang harus dibayar: 
+        <strong>
+            Rp{{ number_format($hargaFinal ?? $paket->harga, 0, ',', '.') }}
+        </strong>
+    </p>
 
     {{-- Display success/error messages --}}
     @if (session('success'))
@@ -19,10 +25,10 @@
     @endif
 
     @if ($snapToken)
-        {{-- If snapToken exists, display the "Bayar Sekarang" button --}}
+        {{-- Jika token sudah ada --}}
         <button id="pay-button" class="btn btn-success">Bayar Sekarang</button>
     @else
-        {{-- If snapToken does not exist (initial load), provide a button to generate it --}}
+        {{-- Jika token belum ada --}}
         <p>Klik tombol di bawah untuk memproses pembayaran dan mendapatkan opsi pembayaran.</p>
         <form action="{{ route('pembayaran.bayar', $post->id) }}" method="POST">
             @csrf
@@ -31,37 +37,37 @@
     @endif
 </div>
 
-{{-- Midtrans Snap Script (only include if snapToken is present to avoid errors on initial load) --}}
+{{-- Midtrans Snap JS --}}
 @if ($snapToken)
     <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}"></script>
 
     <script type="text/javascript">
         document.getElementById('pay-button').addEventListener('click', function () {
-            // Check if window.snap exists before calling pay
+      
             if (typeof window.snap !== 'undefined' && window.snap) {
                 window.snap.pay('{{ $snapToken }}', {
                     onSuccess: function (result) {
-                        console.log('Payment success:', result);
+        
                         alert('Pembayaran berhasil!');
                         window.location.href = '{{ url("/") }}';
                     },
                     onPending: function (result) {
-                        console.log('Payment pending:', result);
+         
                         alert('Pembayaran Anda masih tertunda.');
-                        // Optionally update UI or redirect to a pending status page
+          
                     },
                     onError: function (result) {
-                        console.log('Payment error:', result);
+         
+        
                         alert('Terjadi kesalahan saat pembayaran.');
-                        // Optionally update UI or redirect to an error status page
+         
                     },
                     onClose: function () {
-                        alert('Anda menutup popup pembayaran tanpa menyelesaikan transaksi.');
+                        alert('Anda menutup popup pembayaran.');
                     }
                 });
             } else {
-                alert('Midtrans Snap script not loaded properly. Please try again.');
-                console.error('Midtrans Snap script is not available.');
+                alert('Midtrans Snap belum dimuat. Silakan coba lagi.');
             }
         });
     </script>

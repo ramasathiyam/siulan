@@ -9,7 +9,7 @@
             <div class="row g-0 flex-column flex-md-row">
                 <!-- Gambar -->
                 <div class="col-md-6">
-                    <img src="{{ asset('img/Group 26086203.png') }}" class="img-fluid w-100 h-100 object-fit-cover" alt="Banner Lomba">
+                    <img src="{{ asset('storage/' . $postingan->Poster) }}" class="card-img-top" alt="Poster" style="max-height: 200px; object-fit: cover;">
                 </div>
 
                 <!-- Informasi Lomba -->
@@ -35,23 +35,23 @@
 
             <!-- Deskripsi Lomba -->
             <div class="p-4 border-top bg-light">
-                <h5 class="fw-bold mb-3">Deskripsi Lomba</h5>
+                <h5 class="fw-bold mb-3">Deskripsi</h5>
                 <p>
-                    INOVASI SAINS 2021 (INVASI)<br>
-                    Transformasi Inovasi Masa Kini melalui Pendekatan Sains dan Teknologi Guna Mendukung SDGs 2030.
+                    {{ $postingan->Deskripsi}}<br>
+                    
                 </p>
                 <ul>
-                    <li>Sains dan Teknologi</li>
-                    <li>Energi Terbarukan</li>
-                    <li>Kesehatan</li>
-                    <li>Pendidikan</li>
+                    
+                    <li>{{ $postingan->Kategori }}</li>
+                   
                 </ul>
                 <p>
                     💡 Saatnya kamu bersinar, belajar, dan berkompetisi!<br>
-                    📌 Info lengkap: <a href="#" class="link-primary">bit.ly/linklomba</a><br>
-                    💸 HTM: Rp 35.000/tim<br>
-                    📱 CP: 0899-0000-8888<br>
-                    IG: @fmipaudayana
+                    📌 Info lengkap: {{ $postingan->KontakWebsite}}<br><br>
+                    💸 HTM: {{ $postingan->Harga}}<br>
+                    📱 IG: {{ $postingan->KontakInstagram}}<br>
+                    📱 Youtube: {{ $postingan->KontakYoutube}}<br>
+                    
                 </p>
             </div>
 
@@ -61,12 +61,8 @@
                 <div class="d-flex flex-column flex-md-row align-items-center gap-3">
                     <img src="{{ asset('img/image 15.png') }}" alt="Logo" width="100">
                     <div>
-                        <p class="mb-1">Himpunan Mahasiswa Fakultas MIPA Universitas Udayana</p>
-                        <p class="mb-0">
-                            Jl. Kampus Bukit Jimbaran, Badung<br>
-                            Email: info@unud.ac.id<br>
-                            Tlp/Fax: +62 (361) 701812 / 701907
-                        </p>
+                        <p class="mb-1">{{ $postingan->Penyelenggara}}</p>
+                        
                     </div>
                 </div>
             </div>

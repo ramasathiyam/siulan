@@ -25,6 +25,7 @@ class Posting extends Model
     'TautanPendaftaran',
     'LinkGrup',
     'Harga',
+    'PaketDiskon',
     'KontakInstagram',
     'KontakWebsite',
     'KontakYoutube',
