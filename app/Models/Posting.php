@@ -31,6 +31,7 @@ class Posting extends Model
     'Poster',
     'snap_token',
     'status',
+    'tanggal_aktif',
     'rejection_note', // ✅ Tambahkan ini
 ];
 
