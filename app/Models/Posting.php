@@ -25,12 +25,14 @@ class Posting extends Model
     'TautanPendaftaran',
     'LinkGrup',
     'Harga',
+    'PaketDiskon',
     'KontakInstagram',
     'KontakWebsite',
     'KontakYoutube',
     'Poster',
     'snap_token',
     'status',
+    'tanggal_aktif',
     'rejection_note', // ✅ Tambahkan ini
 ];
 

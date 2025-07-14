@@ -27,10 +27,11 @@ return new class extends Migration
             $table->string('TautanPendaftaran');
             $table->string('LinkGrup'); // Tambahan (WhatsApp/Telegram)
             $table->integer('Harga');// Tambahan
-
+            $table->integer('PaketDiskon');// Tambahan
             $table->string('KontakInstagram');
             $table->string('KontakWebsite');
             $table->string('KontakYoutube');
+            $table->date('tanggal_aktif')->nullable();
 
             $table->string('Poster');
             $table->string('snap_token')->nullable();

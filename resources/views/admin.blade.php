@@ -68,17 +68,19 @@
                                             <button type="submit" class="btn btn-success btn-sm">Approve</button>
                                         </form>
 
-                                        <!-- Reject Button Trigger Modal -->
-                                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#rejectModal{{ $post->id }}">Reject</button>
+                                        <!-- Reject Button: Open Modal -->
+                                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#rejectModal{{ $post->id }}">
+                                            Reject
+                                        </button>
 
                                         <!-- Preview -->
                                         <a href="{{ route('admin.preview', $post->id) }}" class="btn btn-info btn-sm">Preview</a>
                                     </div>
 
-                                    <!-- Modal: Reject Reason -->
+                                   <!-- Modal: Reject Reason -->
                                     <div class="modal fade" id="rejectModal{{ $post->id }}" tabindex="-1" aria-labelledby="rejectModalLabel{{ $post->id }}" aria-hidden="true">
                                         <div class="modal-dialog">
-                                            <form action="{{ route('postingan.reject', $post->id) }}" method="POST">
+                                            <form id="reject-form-{{ $post->id }}" action="{{ route('postingan.reject', $post->id) }}" method="POST">
                                                 @csrf
                                                 <div class="modal-content">
                                                     <div class="modal-header bg-danger text-white">
@@ -87,12 +89,13 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="mb-3">
-                                                            <label for="rejection_note" class="form-label">Alasan Penolakan:</label>
-                                                            <textarea class="form-control" name="rejection_note" rows="3" required></textarea>
+                                                            <label for="rejection_note_{{ $post->id }}" class="form-label">Alasan Penolakan:</label>
+                                                            <textarea class="form-control" name="rejection_note" id="rejection_note_{{ $post->id }}" rows="3" required></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-danger">Kirim Penolakan</button>
+                                                        <button type="button" class="btn btn-danger"
+                                                            onclick="confirmFinalReject({{ $post->id }})">Kirim Penolakan</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -113,5 +116,35 @@
         </div>
     </div>
 </div>
+
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    function confirmFinalReject(postId) {
+        const form = document.getElementById('reject-form-' + postId);
+        const note = document.getElementById('rejection_note_' + postId).value;
+
+        if (!note.trim()) {
+            Swal.fire('Oops!', 'Alasan penolakan wajib diisi.', 'warning');
+            return;
+        }
+
+        Swal.fire({
+            title: 'Yakin ingin menolak postingan ini?',
+            text: "Setelah ditolak, pengguna akan menerima catatan ini.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, Tolak',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+            }
+        });
+    }
+</script>
+
+
 </body>
 </html>
