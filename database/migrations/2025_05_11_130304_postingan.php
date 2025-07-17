@@ -31,8 +31,8 @@ return new class extends Migration
             $table->string('KontakInstagram');
             $table->string('KontakWebsite');
             $table->string('KontakYoutube');
-            $table->date('tanggal_aktif')->nullable();
-
+            $table->date('tanggal_aktif')->nullable();  
+            $table->date('tanggal_expired')->nullable(); 
             $table->string('Poster');
             $table->string('snap_token')->nullable();
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');

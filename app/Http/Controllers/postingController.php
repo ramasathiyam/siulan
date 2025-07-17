@@ -56,7 +56,7 @@ class PostingController extends Controller
         // Logika diskon
         $diskonPersen = 0;
         if (($jumlahPostingSebelumnya + 1) % 5 == 0) {
-            $diskonPersen += 20; // Diskon 20% untuk postingan ke-6
+            $diskonPersen += 20; // Diskon 20% untuk postingan kelipatan 5
         }
 
         $today = Carbon::now();
